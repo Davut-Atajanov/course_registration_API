@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  dev-db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: davut
+      MYSQL_PASSWORD: mypassword
+      MYSQL_DATABASE: course_reg
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - Davut
+networks:
+  Davut:
+    external: false
