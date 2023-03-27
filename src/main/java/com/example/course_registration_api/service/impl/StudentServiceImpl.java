@@ -49,27 +49,13 @@ public class StudentServiceImpl implements StudentService {
     public List<StudentReturnDto> getAllStudent(){
         List<Students> students = this.studentRepository.findAll();
 
-
-//        return students.stream()
-//                .map(student -> {
-//                    StudentReturnDto dto = mapToDto(student);
-//                    Set<String> courseNames = student.getCourseStudents().stream()
-//                            .map(courseStudent -> courseStudent.getCourse().getName())
-//                            .collect(Collectors.toSet());
-//                    dto.setCourses(courseNames);
-//                    return dto;
-//                })
-//                .collect(Collectors.toList());
-
         List<StudentReturnDto> studentDtos = new ArrayList<>();
-
         for (Students student : students) {
             List<Long> courseIds = this.courseStudentRepository.findByStudentId(student.getId())
                     .stream()
                     .map(courseStudent -> courseStudent.getCourseId().getId())
                     .collect(Collectors.toList());
-
-            List<String> courseNames = courseRepository.findByIdIn(courseIds)
+            List<String> courseNames = this.courseRepository.findByIdIn(courseIds)
                     .stream()
                     .map(Courses::getName)
                     .collect(Collectors.toList());
@@ -78,13 +64,12 @@ public class StudentServiceImpl implements StudentService {
             dto.setCourses(courseNames);
             studentDtos.add(dto);
         }
-
         return studentDtos;
     }
 
     @Override
-    public StudentReturnDto getStudentById(Long id){
-        Students students = this.studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Post","id",id));
+    public StudentReturnDto getStudentByUniveristyId(int id){
+        Students students = this.studentRepository.findByUniversityId(id).orElseThrow(() -> new ResourceNotFoundException("Post","universityId",id));
 
 
         return mapToDto(students);
@@ -92,7 +77,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentReturnDto updateStudent(StudentDto studentDto){
-        Students students = this.studentRepository.findById(studentDto.getId()).orElseThrow(() -> new ResourceNotFoundException("Post", "id", studentDto.getId()));
+        Students students = this.studentRepository.findByUniversityId(studentDto.getUniversityId()).orElseThrow(() -> new ResourceNotFoundException("Post", "universityId", studentDto.getUniversityId()));
 
         students.setName(studentDto.getName());
         students.setSurname(studentDto.getSurname());
@@ -103,10 +88,10 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public String deleteStudent(Long id) {
+    public String deleteStudent(int id) {
         try {
-            Students students = this.studentRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("Student", "id", id));
+            Students students = this.studentRepository.findByUniversityId(id)
+                    .orElseThrow(() -> new ResourceNotFoundException("Student", "universityId", id));
             this.studentRepository.delete(students);
             return "Successfully Deleted";
         } catch (ResourceNotFoundException ex) {

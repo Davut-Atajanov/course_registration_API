@@ -7,7 +7,6 @@ import lombok.Data;
 
 @Data
 public class StudentDto {
-    private long id;
     @NotEmpty
     private String name;
     @NotEmpty
@@ -24,5 +23,5 @@ public class StudentDto {
     @NotNull
     private int year;
     @NotNull
-    private long universityId;
+    private int universityId;
 }

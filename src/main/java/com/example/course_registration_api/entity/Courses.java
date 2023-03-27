@@ -40,7 +40,7 @@ public class Courses {
     @Column
     private int sections;
 
-    @OneToMany(mappedBy = "courseId")
+    @OneToMany(mappedBy = "courseId",fetch = FetchType.EAGER,cascade = CascadeType.ALL, targetEntity = CourseStudent.class)
     private Set<CourseStudent> courseStudents;
 
 }

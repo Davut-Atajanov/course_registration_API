@@ -16,11 +16,6 @@ public interface CourseService {
     List<CourseReturnDto> getAllCourses();
 
     CourseReturnDto updateCourse(CourseReturnDto courseReturnDto);
-//    List<StudentReturnDto> getAllStudent();
-//
-//    StudentReturnDto getStudentById(Long id);
-//
-//    StudentReturnDto updateStudent(StudentDto studentDto);
-//
+
     String deleteCourse(int courseId);
 }

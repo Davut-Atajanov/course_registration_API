@@ -22,6 +22,6 @@ public class StudentReturnDto {
     @NotNull
     private int year;
     @NotNull
-    private long universityId;
+    private int universityId;
     private List<String> courses;
 }

@@ -10,9 +10,9 @@ public interface StudentService {
 
     List<StudentReturnDto> getAllStudent();
 
-    StudentReturnDto getStudentById(Long id);
+    StudentReturnDto getStudentByUniveristyId(int id);
 
     StudentReturnDto updateStudent(StudentDto studentDto);
 
-    String deleteStudent(Long id);
+    String deleteStudent(int id);
 }

@@ -5,8 +5,8 @@ import lombok.Data;
 
 @Data
 public class AuthDto {
-    @Schema( example = "22001122",name = "userId",description = "University ID")
-    private long userId;
+    @Schema( example = "22001122",name = "universityId",description = "University ID")
+    private int universityId;
     @Schema( example = "String123!,.",name = "password",description = "Password")
     private String password;
 }

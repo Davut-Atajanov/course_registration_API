@@ -32,7 +32,7 @@ public class Administrator {
     private String department;
 
     @Column
-    private String hash;
+    private String password;
 
     @Column(unique = true)
     private int universityId;

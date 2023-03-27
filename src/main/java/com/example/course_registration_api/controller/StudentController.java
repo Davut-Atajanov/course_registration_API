@@ -29,10 +29,10 @@ public class StudentController {
         return new ResponseEntity(studentService.getAllStudent(),HttpStatus.OK);
     }
 
-    @GetMapping("get/{id}")
-    @Operation(summary = "Get a student by id")
-    public ResponseEntity<StudentReturnDto> getById(@PathVariable(name = "id") long id){
-        return new ResponseEntity<>(this.studentService.getStudentById(id),HttpStatus.OK);
+    @GetMapping("get/{universityId}")
+    @Operation(summary = "Get a student by university id")
+    public ResponseEntity<StudentReturnDto> getById(@PathVariable(name = "universityId") int id){
+        return new ResponseEntity<>(this.studentService.getStudentByUniveristyId(id),HttpStatus.OK);
     }
 
     @PostMapping("register")
@@ -47,9 +47,9 @@ public class StudentController {
         return new ResponseEntity<>(this.studentService.updateStudent(studentDto), HttpStatus.OK);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("delete/{universityId}")
     @Operation(summary = "Delete student from system")
-    public ResponseEntity<String> deleteStudent(@PathVariable(name = "id") long id){
+    public ResponseEntity<String> deleteStudent(@PathVariable(name = "universityId") int id){
         return new ResponseEntity<>(this.studentService.deleteStudent(id),HttpStatus.OK);
     }
 }

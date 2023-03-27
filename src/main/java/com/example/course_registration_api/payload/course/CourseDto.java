@@ -7,7 +7,6 @@ import lombok.Data;
 
 @Data
 public class CourseDto {
-    private long id;
     @NotEmpty
     private String name;
     @NotEmpty
