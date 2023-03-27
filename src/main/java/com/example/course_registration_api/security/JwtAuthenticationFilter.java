@@ -31,7 +31,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        System.out.println(request.getHeader("Authorization") + " " + "insideDoFilterInternal");
 
         String header = request.getHeader("Authorization");
 
@@ -41,8 +40,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         String token = header.substring(7, header.length());
-        System.out.println(token);
-        System.out.println("Before sending to getClaims");
         Map<String, Object> claims = jwtUtils.getClaimsFromJwtToken(token);
 
         if (claims == null) {

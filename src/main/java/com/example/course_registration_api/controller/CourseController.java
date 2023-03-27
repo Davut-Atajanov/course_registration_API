@@ -3,6 +3,7 @@ package com.example.course_registration_api.controller;
 
 import com.example.course_registration_api.payload.course.CourseDto;
 import com.example.course_registration_api.payload.course.CourseReturnDto;
+import com.example.course_registration_api.payload.student.StudentReturnDto;
 import com.example.course_registration_api.service.CourseService;
 import com.example.course_registration_api.service.StudentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -33,10 +35,16 @@ public class CourseController {
         return new ResponseEntity<>(this.courseService.getAllCourses(),HttpStatus.OK);
     }
 
-    @GetMapping("get/{courseid}")
+    @GetMapping("getAllStudents/{courseCode}")
+    @Operation(summary = "Get all students in a course")
+    public ResponseEntity<List<Map<String, Object>>> getAllStudentsInCourse(@PathVariable(name = "courseCode") int courseCode){
+        return new ResponseEntity<>(this.courseService.getAllStudentsInCourse(courseCode),HttpStatus.OK);
+    }
+
+    @GetMapping("get/{courseCode}")
     @Operation(summary = "Get course by courseId")
-    public ResponseEntity<CourseReturnDto> getByCourseId(@PathVariable(name = "courseid") int courseId){
-        return new ResponseEntity<>(this.courseService.getCourseByCourseID(courseId), HttpStatus.OK);
+    public ResponseEntity<CourseReturnDto> getByCourseId(@PathVariable(name = "courseCode") int courseCode){
+        return new ResponseEntity<>(this.courseService.getCourseByCourseID(courseCode), HttpStatus.OK);
     }
 
     @PostMapping("create_course")
@@ -45,10 +53,10 @@ public class CourseController {
         return new ResponseEntity<>(this.courseService.registerCourse(courseReturnDto), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("delete/{courseid}")
+    @DeleteMapping("delete/{courseCode}")
     @Operation(summary = "Delete course by courseId")
-    public ResponseEntity<String> deleteCourse(@PathVariable(name = "courseid") int courseId){
-        return new ResponseEntity<>(this.courseService.deleteCourse(courseId), HttpStatus.OK);
+    public ResponseEntity<String> deleteCourse(@PathVariable(name = "courseCode") int courseCode){
+        return new ResponseEntity<>(this.courseService.deleteCourse(courseCode), HttpStatus.OK);
     }
 
     @PutMapping("update")

@@ -7,6 +7,7 @@ import com.example.course_registration_api.payload.student.StudentReturnDto;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CourseService {
     CourseReturnDto registerCourse(CourseReturnDto courseReturnDto);
@@ -18,4 +19,6 @@ public interface CourseService {
     CourseReturnDto updateCourse(CourseReturnDto courseReturnDto);
 
     String deleteCourse(int courseId);
+
+    List<Map<String, Object>> getAllStudentsInCourse(int courseId);
 }

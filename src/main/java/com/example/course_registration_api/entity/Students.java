@@ -45,7 +45,7 @@ public class Students {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "studentId", fetch = FetchType.EAGER,cascade = CascadeType.ALL, targetEntity = CourseStudent.class)
+    @OneToMany(mappedBy = "studentId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<CourseStudent> courseStudents;
 
 }

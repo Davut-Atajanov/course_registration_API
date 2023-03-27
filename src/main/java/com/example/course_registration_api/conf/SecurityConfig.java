@@ -15,11 +15,6 @@ public class SecurityConfig implements WebSecurityConfigurer<WebSecurity> {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-    web.ignoring().requestMatchers("/v3/api-docs/**",
-            "/swagger-ui/**",
-            "/swagger-ui.html",
-            "/api/auth/**",
-            "/api/students/**",
-            "/api/**");
+    web.ignoring().anyRequest();
     }
 }

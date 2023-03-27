@@ -18,12 +18,10 @@ public class CourseStudent {
     private Long id;
 
     @ManyToOne
-    @MapsId("courseId")
     @JoinColumn(name = "course_id")
     private Courses courseId;
 
     @ManyToOne
-    @MapsId("studentId")
     @JoinColumn(name = "student_id")
     private Students studentId;
 

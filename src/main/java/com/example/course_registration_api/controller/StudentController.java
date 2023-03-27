@@ -41,7 +41,7 @@ public class StudentController {
         return new ResponseEntity<>(this.studentService.registerStudent(studentDto), HttpStatus.CREATED);
     }
 
-    @PutMapping("update/{id}")
+    @PutMapping("update")
     @Operation(summary = "Update Student Information")
     public ResponseEntity<StudentReturnDto> updateStudent(@Valid @RequestBody StudentDto studentDto){
         return new ResponseEntity<>(this.studentService.updateStudent(studentDto), HttpStatus.OK);
